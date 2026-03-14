@@ -1,0 +1,397 @@
+/* src/index.css */
+/* FILE 10 of 13 */
+/* Morpheus Design System — complete visual identity */
+
+/* ─── Tailwind ─────────────────────────────────────────── */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design Tokens ────────────────────────────────────── */
+:root {
+  /* Core palette */
+  --morpheus-bg: #ffffff;
+  --morpheus-surface: #f8f9fa;
+  --morpheus-surface-2: #f1f3f5;
+  --morpheus-border: #e9ecef;
+  --morpheus-border-light: #f1f3f5;
+
+  /* Text hierarchy */
+  --morpheus-text-1: #0a0a0a;
+  --morpheus-text-2: #495057;
+  --morpheus-text-3: #868e96;
+  --morpheus-text-4: #ced4da;
+
+  /* Morpheus identity */
+  --morpheus-primary: #4f46e5;
+  --morpheus-primary-light: #eef2ff;
+  --morpheus-primary-hover: #4338ca;
+  --morpheus-primary-glow: rgba(79, 70, 229, 0.12);
+
+  /* Secondary */
+  --morpheus-secondary: #6366f1;
+  --morpheus-secondary-light: #e0e7ff;
+
+  /* Status */
+  --morpheus-success: #10b981;
+  --morpheus-success-light: #ecfdf5;
+  --morpheus-warning: #f59e0b;
+  --morpheus-warning-light: #fffbeb;
+  --morpheus-error: #ef4444;
+  --morpheus-error-light: #fef2f2;
+  --morpheus-info: #3b82f6;
+  --morpheus-info-light: #eff6ff;
+
+  /* Phase colors */
+  --morpheus-analyzing: #8b5cf6;
+  --morpheus-planning: #6366f1;
+  --morpheus-building: #f59e0b;
+  --morpheus-reviewing: #3b82f6;
+  --morpheus-complete: #10b981;
+
+  /* Typography */
+  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-code: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  --font-brand: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-3xl: 48px;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 20px rgba(79, 70, 229, 0.15);
+
+  /* Transitions */
+  --transition-fast: 100ms ease;
+  --transition-normal: 200ms ease;
+  --transition-slow: 300ms ease;
+}
+
+/* ─── Base Reset ───────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-ui);
+  color: var(--morpheus-text-1);
+  background: var(--morpheus-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5;
+  overflow: hidden;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+/* ─── Scrollbar ────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--morpheus-border);
+  border-radius: var(--radius-full);
+  transition: background var(--transition-normal);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--morpheus-text-3);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--morpheus-border) transparent;
+}
+
+/* ─── Selection ────────────────────────────────────────── */
+::selection {
+  background: var(--morpheus-primary-light);
+  color: var(--morpheus-primary);
+}
+
+/* ─── Focus ────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--morpheus-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--morpheus-primary);
+  outline-offset: 2px;
+}
+
+/* Remove default focus for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ─── Morpheus Character Animations ────────────────────── */
+
+@keyframes morpheus-eye-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.85;
+  }
+}
+
+@keyframes morpheus-eye-scan {
+  0% { transform: translateX(0) scale(1); }
+  25% { transform: translateX(2px) scale(1.05); }
+  50% { transform: translateX(0) scale(1); }
+  75% { transform: translateX(-2px) scale(1.05); }
+  100% { transform: translateX(0) scale(1); }
+}
+
+@keyframes morpheus-thinking {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+@keyframes morpheus-breathe {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(79, 70, 229, 0);
+  }
+}
+
+@keyframes morpheus-ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+@keyframes morpheus-orbit {
+  0% { transform: rotate(0deg) translateX(12px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(12px) rotate(-360deg); }
+}
+
+@keyframes phase-scan {
+  0% { left: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+@keyframes code-line-glow {
+  0% { background: transparent; }
+  50% { background: rgba(79, 70, 229, 0.04); }
+  100% { background: transparent; }
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ─── Morpheus Character Classes ───────────────────────── */
+
+.morpheus-eye {
+  animation: morpheus-eye-pulse 3s ease-in-out infinite;
+}
+
+.morpheus-eye-scanning {
+  animation: morpheus-eye-scan 2s ease-in-out infinite;
+}
+
+.morpheus-breathe {
+  animation: morpheus-breathe 3s ease-in-out infinite;
+}
+
+.morpheus-thinking-bar {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--morpheus-primary-light) 25%,
+    var(--morpheus-primary) 50%,
+    var(--morpheus-primary-light) 75%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: morpheus-thinking 2s linear infinite;
+}
+
+/* ─── Utility Classes ──────────────────────────────────── */
+
+.font-brand {
+  font-family: var(--font-brand);
+}
+
+.font-code {
+  font-family: var(--font-code);
+}
+
+.text-gradient-morpheus {
+  background: linear-gradient(135deg, var(--morpheus-primary) 0%, var(--morpheus-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Phase indicator bars */
+.phase-bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.phase-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 30%;
+  height: 100%;
+}
+
+.phase-bar-analyzing::after {
+  animation: phase-scan 2s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+}
+
+.phase-bar-planning::after {
+  animation: phase-scan 2s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+}
+
+.phase-bar-building::after {
+  animation: phase-scan 2s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.3), transparent);
+}
+
+.phase-bar-reviewing::after {
+  animation: phase-scan 2s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+}
+
+/* Drop zone animation */
+.drop-shimmer {
+  background: linear-gradient(
+    135deg,
+    var(--morpheus-primary-light) 0%,
+    white 25%,
+    var(--morpheus-primary-light) 50%,
+    white 75%,
+    var(--morpheus-primary-light) 100%
+  );
+  background-size: 400% 400%;
+  animation: morpheus-thinking 3s ease infinite;
+}
+
+/* ─── Code Editor Styles ───────────────────────────────── */
+
+.code-line-active {
+  animation: code-line-glow 2s ease-in-out infinite;
+}
+
+.cursor-blink {
+  animation: cursor-blink 1s step-end infinite;
+}
+
+/* Prevent text selection in UI chrome */
+.no-select {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* ─── Smooth transitions for interactive elements ──────── */
+
+button {
+  transition: all var(--transition-normal);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* ─── File tab hover effect ────────────────────────────── */
+
+.file-tab {
+  position: relative;
+  transition: all var(--transition-normal);
+}
+
+.file-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--morpheus-primary);
+  transform: scaleX(0);
+  transition: transform var(--transition-normal);
+}
+
+.file-tab:hover::after {
+  transform: scaleX(1);
+}
+
+.file-tab.active::after {
+  transform: scaleX(1);
+}
+
+/* ─── Preview iframe reset ─────────────────────────────── */
+
+iframe {
+  border: none;
+  display: block;
+}
+
+/* ─── Print styles ─────────────────────────────────────── */
+
+@media print {
+  body {
+    overflow: visible;
+  }
+  nav, .no-print {
+    display: none !important;
+  }
+}
